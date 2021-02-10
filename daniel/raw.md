@@ -21,6 +21,10 @@ L'implementazione di questi **scripts** è leggermente differente in base al sis
 
 **[1]** Bisogna fare distinzione tra i terminali e le shell: i terminali sono gli emulatori che permettono all'utente di visualizzare graficamente i messaggi e gli errori della shell ([stdout](<https://www.wikiwand.com/en/Standard_streams#/Standard_output_(stdout)>) ed [stderr](<https://www.wikiwand.com/en/Standard_streams#/Standard_error_(stderr)>) nei sistemi unix-like) e rispondere inviando altro testo ([stdin](<https://www.wikiwand.com/en/Standard_streams#/Standard_input_(stdin)>) nei sistemi unix-like), mentre le shell sono interfacce fra l'utente e i servizi del sistema operativo. [Questo articolo](https://github.com/labuladong/fucking-algorithm/blob/english/common_knowledge/linuxProcess.md) approfondisce riguardo stdin, stdout ed stderr con riferimenti al codice sorgente del kernel di linux.
 
+## DOS e Windows
+
+Partendo da [MS-DOS](https://www.wikiwand.com/en/MS-DOS) all'inizio degli anni 80 fino ad arrivare al recente [Windows 10](https://www.wikiwand.com/en/Windows_10), i sistemi operativi della famiglia [DOS](https://www.wikiwand.com/it/DOS) sono i più diffusi tra i computer comuni. Al giorno d'oggi in Windows il framework di scripting più comodo ad utilizzare è [PowerShell](https://www.wikiwand.com/en/PowerShell), decisamente più moderno e versatile del caro e vecchio MS-DOS.
+
 ## Sistemi UNIX-like
 
 ### Storicamente
