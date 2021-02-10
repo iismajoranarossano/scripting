@@ -15,11 +15,11 @@ Se parliamo di programmatori, uno degli strumenti con il quale passano più del 
 L'implementazione di questi **scripts** è leggermente differente in base al sistema operativo del computer sul quale si sta operando. Quando si tratta di shell scripting, possiamo dividere i sistemi operativi in 2 grandi categorie:
 
 - i sistemi operativi **[UNIX-like](https://www.wikiwand.com/en/Unix-like)**, ispirati al sistema operativo [UNIX](https://www.wikiwand.com/en/Unix), come ad esempio [macOS](https://www.wikiwand.com/en/MacOS),
-- e i sistemi operativi **DOS-like**, ispirati al **[DOS](https://www.wikiwand.com/en/DOS)**, come ad esempio [Windows](https://www.wikiwand.com/en/Microsoft_Windows).
+- e i sistemi operativi della famiglia **DOS**, ispirati, per l'appunto, al **[DOS](https://www.wikiwand.com/en/DOS)**, come ad esempio [Windows](https://www.wikiwand.com/en/Microsoft_Windows).
 
 ---
 
-**[1]** Bisogna fare distinzione tra i terminali e le shell: i terminali sono gli emulatori che permettono all'utente di visualizzare graficamente i messaggi e gli errori della shell ([stdout](<https://www.wikiwand.com/en/Standard_streams#/Standard_output_(stdout)>) ed [stderr](<https://www.wikiwand.com/en/Standard_streams#/Standard_error_(stderr)>) nei sistemi unix-like) e rispondere inviando altro testo ([stdin](<https://www.wikiwand.com/en/Standard_streams#/Standard_input_(stdin)>) nei sistemi unix-like), mentre le shell sono interfacce fra l'utente e i servizi del sistema operativo. [Questo articolo](https://github.com/labuladong/fucking-algorithm/blob/english/common_knowledge/linuxProcess.md) approfondisce riguardo stdin, stdout ed stderr con riferimenti al codice sorgente del kernel di linux.
+**[1]** Bisogna fare distinzione tra i terminali e le shell: i terminali sono gli emulatori che permettono all'utente di visualizzare graficamente i messaggi e gli errori della shell ([STDOUT](<https://www.wikiwand.com/en/Standard_streams#/Standard_output_(stdout)>) ed [STDERR](<https://www.wikiwand.com/en/Standard_streams#/Standard_error_(stderr)>) nei sistemi unix-like) e rispondere inviando altro testo ([STDIN](<https://www.wikiwand.com/en/Standard_streams#/Standard_input_(stdin)>) nei sistemi unix-like), mentre le shell sono interfacce fra l'utente e i servizi del sistema operativo. [Questo articolo](https://github.com/labuladong/fucking-algorithm/blob/english/common_knowledge/linuxProcess.md) approfondisce riguardo STDIN, STDOUT ed STDERR con riferimenti al codice sorgente del kernel di linux.
 
 ## DOS e Windows
 
