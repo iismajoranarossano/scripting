@@ -49,7 +49,7 @@ assumendo che `env` sia in `/usr/bin/` come da convenzione.
 
 Anche se nel caso della sh l'`#` corrisponde al carattere che inizia i commenti, la shebang line è valida e non comporta problemi neanche per i linguaggi dove i commenti non iniziano per `#` finchè è esattamente la prima linea del file.
 
-Tra le migliaia di linee di codice del kernel di linux, open-source e disponible all'indirizzo github.com/torvalds/linux, possiamo osservare che [la prima linea di codice](https://github.com/torvalds/linux/blob/e0756cfc7d7cd08c98a53b6009c091a3f6a50be6/fs/binfmt_script.c#L41) eseguita quando viene caricato uno script
+Tra le migliaia di linee di codice del kernel di linux, open-source e disponible all'indirizzo https://github.com/torvalds/linux, possiamo osservare che [la prima linea di codice](https://github.com/torvalds/linux/blob/e0756cfc7d7cd08c98a53b6009c091a3f6a50be6/fs/binfmt_script.c#L41) eseguita quando viene caricato uno script
 
 ```c
 if ((bprm->buf[0] != '#') || (bprm->buf[1] != '!'))
