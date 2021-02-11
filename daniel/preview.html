@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shell Scripting</title>
+    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+      integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
+          system-ui, "Ubuntu", "Droid Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    </style>
+    <style>
+      .task-list-item {
+        list-style-type: none;
+      }
+      .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+  </head>
+  <body class="vscode-body vscode-light">
+    <h1 id="shell-scripting">Shell Scripting</h1>
+    <blockquote>
+      <p>
+        Daniel Falbo ---
+        <a href="mailto:danielfalbo@engineer.com">danielfalbo@engineer.com</a>
+      </p>
+    </blockquote>
+    <h2 id="introduzione">Introduzione</h2>
+    <p>
+      A nessuno piace svolgere <strong>compiti noiosi e ripetitivi</strong>.
+      Mentre alcuni di questi compiti ancora necessitano di essere ripetuti
+      manualmente, altri, sopratutto se ci sono
+      <strong>macchine</strong> coinvolte, sono
+      <strong>automatizzabili</strong>. Al giorno d'oggi, tra remote working e
+      smart learning, molti di noi potrebbero
+      <strong>salvare tempo prezioso quotidianamente</strong> automatizzando
+      compiti che ripetutamente svolgono con i propri
+      <strong>computers</strong>.
+    </p>
+    <blockquote>
+      <ol>
+        <li>
+          <strong>Esercizio per il lettore</strong>:
+          <em
+            >elenca almeno 3 procedure che svolgi quotidianamente con il tuo
+            telefono o computer, pensa (anche solo intuitivamente, ignorando per
+            ora l'implementazione pratica) a come potrebbero essere
+            automatizzate e stima quanto tempo risparmieresti ogni giorno.</em
+          >
+        </li>
+      </ol>
+    </blockquote>
+    <p>
+      Se parliamo di programmatori, uno degli strumenti con il quale passano più
+      del loro tempo è il terminale <strong>[1]</strong>. L'automatizzazione di
+      comandi ripetuti al prompt di un terminale, è detta
+      <strong>shell scripting</strong>, e consiste nel creare (ed eventualmente
+      eseguire) file contenenti le istruzioni che si vogliono automatizzare e
+      l'interprete che dovrebbe eseguire queste operazioni.
+    </p>
+    <blockquote>
+      <ol start="2">
+        <li>
+          <strong>Esercizio per il lettore programmatore</strong>:
+          <em>svolgi l'</em> esercizio 1
+          <em
+            >ma limitati ad elencare solo procedure ripetitive che svolgi nel
+            tuo terminale o nel tuo IDE.</em
+          >
+        </li>
+      </ol>
+    </blockquote>
+    <p>
+      L'implementazione di questi <strong>scripts</strong> è leggermente
+      differente in base al sistema operativo del computer sul quale si sta
+      operando. Quando si tratta di shell scripting, possiamo dividere i sistemi
+      operativi in 2 grandi categorie:
+    </p>
+    <ul>
+      <li>
+        i sistemi operativi
+        <strong
+          ><a href="https://www.wikiwand.com/en/Unix-like">UNIX-like</a></strong
+        >, ispirati al sistema operativo
+        <a href="https://www.wikiwand.com/en/Unix">UNIX</a>, come ad esempio
+        <a href="https://www.wikiwand.com/en/MacOS">macOS</a>,
+      </li>
+      <li>
+        e i sistemi operativi della famiglia <strong>DOS</strong>, ispirati, per
+        l'appunto, al
+        <strong><a href="https://www.wikiwand.com/en/DOS">DOS</a></strong
+        >, come ad esempio
+        <a href="https://www.wikiwand.com/en/Microsoft_Windows">Windows</a>.
+      </li>
+    </ul>
+    <hr />
+    <p>
+      <strong>[1]</strong> Bisogna fare distinzione tra i terminali e le shell:
+      i terminali sono gli emulatori che permettono all'utente di visualizzare
+      graficamente i messaggi e gli errori della shell (<a
+        href="https://www.wikiwand.com/en/Standard_streams#/Standard_output_(stdout)"
+        >STDOUT</a
+      >
+      ed
+      <a
+        href="https://www.wikiwand.com/en/Standard_streams#/Standard_error_(stderr)"
+        >STDERR</a
+      >
+      nei sistemi unix-like) e rispondere inviando altro testo (<a
+        href="https://www.wikiwand.com/en/Standard_streams#/Standard_input_(stdin)"
+        >STDIN</a
+      >
+      nei sistemi unix-like), mentre le shell sono interfacce fra l'utente e i
+      servizi del sistema operativo.
+      <a
+        href="https://github.com/labuladong/fucking-algorithm/blob/english/common_knowledge/linuxProcess.html"
+        >Questo articolo</a
+      >
+      approfondisce riguardo STDIN, STDOUT ed STDERR con riferimenti al codice
+      sorgente del kernel di linux.
+    </p>
+    <h2 id="dos-e-windows">DOS e Windows</h2>
+    <p>
+      Partendo da
+      <a href="https://www.wikiwand.com/en/MS-DOS">MS-DOS</a> all'inizio degli
+      anni 80 fino ad arrivare al recente
+      <a href="https://www.wikiwand.com/en/Windows_10">Windows 10</a>, i sistemi
+      operativi della famiglia
+      <a href="https://www.wikiwand.com/it/DOS">DOS</a> sono i più diffusi tra i
+      computer comuni. Al giorno d'oggi in Windows il framework di scripting più
+      comodo da utilizzare è
+      <a href="https://www.wikiwand.com/en/PowerShell">PowerShell</a>,
+      decisamente più moderno e versatile del caro, vecchio MS-DOS.
+    </p>
+    <h2 id="sistemi-unix-like">Sistemi UNIX-like</h2>
+    <h3 id="storicamente">Storicamente</h3>
+    <p>
+      Nel 1979 la
+      <a href="https://www.wikiwand.com/en/Version_7_Unix"
+        >settima versione di unix</a
+      >
+      fu rilasciata con, come shell predefinita, la
+      <a href="https://www.wikiwand.com/en/Bourne_shell">Bourne shell</a>,
+      spesso chiamata semplicemente &quot;sh&quot;. Da quel giorno sh rimase una
+      shell di riferimento per i sistemi unix-like e ancora oggi è inclusa in
+      molti sistemi.
+    </p>
+    <blockquote>
+      <ol start="3">
+        <li>
+          <strong>Esercizio</strong>: se possiedi un computer con un sistema
+          operativo unix-like, come macOS o tutte le distribuzioni linux,
+          verifica se <code>sh</code> è presente nel tuo sistema eseguendo
+          <code>which sh</code> nel terminale (se vuoi, puoi leggere il manuale
+          di istruzioni del comando <code>which</code> lanciando
+          <code>man which</code>).
+        </li>
+      </ol>
+    </blockquote>
+    <p>
+      La Bourne shell è una shell molto semplice, basilare. Tra i comandi
+      disponibili <strong>[2]</strong> abbiamo <code>cd</code>, che prende come
+      argomento il percorso di una directory e si sposta in quella directory,
+      <code>pwd</code>, che stampa a video il percorso completo della directory
+      corrente, <code>echo</code>, che stampa a video tutti gli argomenti che
+      riceve, ma anche blocchi condizionali come i <code>while</code> loops, i
+      <code>for</code> loops o gli <code>if ; then</code> statements.
+    </p>
+    <p>
+      Nei sistemi unix-like, in genere gli script iniziano con una linea che
+      contiene un asterisco (hashtag), un punto esclamativo (bang) e il percorso
+      all'interprete dello script, chiamata comunemente
+      <a href="https://www.wikiwand.com/en/Shebang_(Unix)">shebang line</a>. Per
+      convenzione, su tutti i sistemi unix-like il percorso della bourne shell è
+      <code>/bin/sh</code>, quindi la prima riga di un nostro shell script
+      sarebbe
+    </p>
+    <pre><code class="language-sh"><div><span class="hljs-meta">#! /bin/sh</span>
+</div></code></pre>
+    <p>
+      mentre per altri interpreti dei quali non siamo sicuri del percorso, si
+      utilizza
+    </p>
+    <pre><code class="language-sh"><div><span class="hljs-meta">#! /usr/bin/env &lt;interprete&gt;</span>
+</div></code></pre>
+    <p>
+      assumendo che <code>env</code> sia in <code>/usr/bin/</code> come da
+      convenzione.
+    </p>
+    <blockquote>
+      <ol start="4">
+        <li>
+          <strong>Esercizio</strong>: come mai? Utilizza
+          <code>man env</code> per capire cos'è <code>env</code> e perchè
+          utilizzare <code>#! /usr/bin/env &lt;interprete&gt;</code> come
+          shebang line ha senso.
+        </li>
+      </ol>
+    </blockquote>
+    <p>
+      Anche se nel caso della sh l'<code>#</code> corrisponde al carattere che
+      inizia i commenti, la shebang line è valida e non comporta problemi
+      neanche per i linguaggi dove i commenti non iniziano per
+      <code>#</code> finchè è esattamente la prima linea del file.
+    </p>
+    <p>
+      Tra le migliaia di linee di codice del kernel di linux, open-source e
+      disponible all'indirizzo
+      <a href="https://github.com/torvalds/linux">github.com/torvalds/linux</a>,
+      possiamo osservare che
+      <a
+        href="https://github.com/torvalds/linux/blob/e0756cfc7d7cd08c98a53b6009c091a3f6a50be6/fs/binfmt_script.c#L41"
+        >la prima linea di codice</a
+      >
+      eseguita quando viene caricato uno script
+    </p>
+    <pre><code class="language-c"><div><span class="hljs-keyword">if</span> ((bprm-&gt;buf[<span class="hljs-number">0</span>] != <span class="hljs-string">&#x27;#&#x27;</span>) || (bprm-&gt;buf[<span class="hljs-number">1</span>] != <span class="hljs-string">&#x27;!&#x27;</span>))
+    <span class="hljs-keyword">return</span> -ENOEXEC;
+</div></code></pre>
+    <p>
+      controlla i primi due byte o caratteri del file e si assicura che il primo
+      non sia diverso da <code>'#'</code> ed il secondo non sia diverso da
+      <code>'!'</code>.
+    </p>
+    <h3 id="scripting-moderno">Scripting moderno</h3>
+    <p>
+      In realtà con l'esercizio 3 ho mentito: anche se
+      <code>which sh</code> mostra con successo il percorso che porta ad
+      <code>sh</code> sulla tua macchina, probabilmente non hai la vera
+      <code>sh</code>. È comune infatti al giorno d'oggi rimpiazzare
+      <code>sh</code> con un collegamento ad una shell più moderna ma
+      retrocompatibile, come la
+      <a href="https://www.wikiwand.com/en/Bash_(Unix_shell)"
+        >Bourne again shell</a
+      >
+      (&quot;shell rinata&quot;), spesso chiamata semplicemente
+      &quot;bash&quot;.
+    </p>
+    <h4 id="scriviamo-ed-eseguiamo-il-nostro-primo-script-insieme">
+      Scriviamo ed eseguiamo il nostro primo script insieme
+    </h4>
+    <p>
+      Per scrivere uno script, la prima cosa di cui abbiamo bisogno è un editor
+      di testo, per questo articolo utilizzerò <code>vi</code>, un editor
+      incluso nella maggior parte dei sistemi unix-like, che probabilmente hai
+      anche tu (controlla lanciando <code>which vi</code>, in caso
+      <code>vi</code> non sia installato, qualunque altro editor di testo che
+      già conosci va benissimo).
+    </p>
+    <p>
+      Lo script che stiamo per scrivere prenderà due argomenti, una località di
+      partenza ed una destinazione, ed aprirà il nostro web browser sui
+      risultati di Google Voli relativi.
+    </p>
+    <p>
+      Dal terminale, il comando <code>vi voli</code> aprirà <code>vi</code> con
+      un nuovo file, chiamato <code>voli</code>, il nostro script. Una volta
+      aperto l'editor inseriamo la shebang line, digitando prima
+      <code>i</code> per passare dalla <code>normal mode</code> di
+      <code>vi</code> alla <code>insert mode</code>, per poter scrivere, e poi
+      digitando la nostra shebang line, <code>#! /bin/sh</code>. Il comando
+      utilizzato per aprire un link nel web browser predefinito è
+      <code>open</code> su macOS e <code>xdg-open</code> sulla maggior parte
+      delle distribuzioni di Linux. Utilizzeremo <code>$1</code> ed
+      <code>$2</code> per prendere il primo ed il secondo argomento e li
+      includeremo nella richiesta a google. Quindi digitiamo invio in
+      <code>vi</code> per andare alla riga successiva ed aggiungiamo
+    </p>
+    <pre><code class="language-sh"><div><span class="hljs-meta">#! /bin/sh</span>
+
+open <span class="hljs-string">&quot;https://www.google.com/search?q=Voli%20da%20<span class="hljs-variable">$1</span>%20a%20<span class="hljs-variable">$2</span>&quot;</span>
+</div></code></pre>
+    <p>se siamo su macOS, oppure</p>
+    <pre><code class="language-sh"><div><span class="hljs-meta">#! /bin/sh</span>
+
+xdg-open <span class="hljs-string">&quot;https://www.google.com/search?q=Voli%20da%20<span class="hljs-variable">$1</span>%20a%20<span class="hljs-variable">$2</span>&quot;</span>
+</div></code></pre>
+    <p>
+      se siamo su una distribuzione Linux. Dopodichè premiamo
+      <code>&lt;esc&gt;</code> per uscire dalla insert mode di <code>vi</code>,
+      salviamo il file digitando <code>:write</code> (e premendo invio) ed
+      usciamo da <code>vi</code> digitando <code>:quit</code>. Adesso lanciando
+      <code>ls</code> vediamo che tra i file contenuti nella nostra directory
+      corrente c'è anche il nostro <code>voli</code>. Lo rendiamo eseguibile
+      lanciando
+    </p>
+    <pre><code class="language-sh"><div>chmod +x voli
+</div></code></pre>
+    <p>ed infine lo eseguiamo, lanciando, per esempio,</p>
+    <pre><code class="language-sh"><div>./voli Bari Parigi
+</div></code></pre>
+    <p>
+      Complimenti! Hai appena scritto ed eseguito il tuo primo shell script.
+    </p>
+    <hr />
+    <p>
+      <strong>[2]</strong> Per i più curiosi, il comando
+      <code>help</code> stampa a video tutti i comandi built-in ed il comando
+      <code>man</code> prende come argomento un altro comando e stampa a video
+      il manuale delle istruzioni di quel comando (ad esempio
+      <code>man echo</code> stampa a video le istruzioni del comando
+      <code>echo</code>).
+    </p>
+  </body>
+</html>
