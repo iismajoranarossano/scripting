@@ -16,7 +16,7 @@ In aggiunta alla modalità interattiva, che permette all’utente di eseguire un
 ## Creazione di un Bash Shell Script /.sh
 Okay ora che conosciamo più o meno le basi della terminologia, cerchiamo di entrare in azione e finalmente mettere mano sul lato progammazione, questo primo script che voglio farti vedere e analizzare non fa altro che stamparti a video la quantità di disco occupata da un determinato argomento. Per creare il nostro primo "file.sh" dobbiamo seguire una serie di istruzioni molto semplici e veloci. 
 ### Istruzioni
-  - >Per prima cosa se non hai una distribuzione linux (Ubuntu,ParrotOS,Linux Mint ecc...) o [UNIX-like](https://www.wikiwand.com/en/Unix-like)**, ti invito a scaricarne una immediatamente. 
+  - >Per prima cosa se non hai una distribuzione linux (Ubuntu,ParrotOS,Linux Mint ecc...) o [UNIX-like](https://www.wikiwand.com/en/Unix-like), ti invito a scaricarne una immediatamente. 
 
  - >Il prossimo passaggio è aprire un qualsiasi editor di testo, ad esempio `gedit`.
 
