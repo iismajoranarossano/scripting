@@ -1,4 +1,4 @@
-# Bash e Dos & Cmd
+# Bash, Dos & Cmd
 - Alex Pio Lefosse IV inf.
 
 ## Introduzione Bash
