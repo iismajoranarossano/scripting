@@ -72,7 +72,7 @@ Per scrivere uno script, la prima cosa di cui abbiamo bisogno è un editor di te
 
 Lo script che stiamo per scrivere prenderà due argomenti, una località di partenza ed una destinazione, ed aprirà il nostro web browser sui risultati di Google Voli relativi.
 
-Dal terminale, il comando `vi voli` aprirà `vi` con un nuovo file, chiamato `voli`, il nostro script. Una volta aperto l'editor inseriamo la shebang line, digitando prima `i` per passare dalla `normal mode` di `vi` alla `insert mode`, per poter scrivere, e poi digitando la nostra shebang line, `#! /bin/sh`. Il comando utilizzato per aprire un link nel web browser predefinito è `open` su macOS e `xdg-open` sulla maggior parte delle distribuzioni di Linux. Utilizzeremo `$1` ed `$2` per prendere il primo ed il secondo argomento e li includeremo nella richiesta a google. Quindi digitiamo invio in `vi` per andare alla riga successiva ed aggiungiamo
+Dal terminale, il comando `vi voli` aprirà `vi` con un nuovo file, chiamato `voli`, il nostro script. Una volta aperto l'editor inseriamo la shebang line, digitando prima `i` per passare dalla `normal mode` di `vi` alla `insert mode`, per poter scrivere, e poi digitando la nostra shebang line, `#! /bin/sh`. Il comando utilizzato per aprire un link nel web browser predefinito è `open` su macOS e `xdg-open` sulla maggior parte delle distribuzioni di Linux. Utilizzeremo `$1` e `$2` per prendere il primo ed il secondo argomento e li includeremo nella richiesta a google. Quindi digitiamo invio in `vi` per andare alla riga successiva ed aggiungiamo
 
 ```sh
 #! /bin/sh
@@ -88,7 +88,9 @@ se siamo su macOS, oppure
 xdg-open "https://www.google.com/search?q=Voli%20da%20$1%20a%20$2"
 ```
 
-se siamo su una distribuzione Linux. Dopodichè premiamo `<esc>` per uscire dalla insert mode di `vi`, salviamo il file digitando `:write` (e premendo invio) ed usciamo da `vi` digitando `:quit`. Adesso lanciando `ls` vediamo che tra i file contenuti nella nostra directory corrente c'è anche il nostro `voli`. Lo rendiamo eseguibile lanciando
+se siamo su una distribuzione Linux.
+
+Dopodichè premiamo `<esc>` per uscire dalla insert mode di `vi`, salviamo il file digitando `:write` (e premendo invio) ed usciamo da `vi` digitando `:quit`. Adesso lanciando `ls` vediamo che tra i file contenuti nella nostra directory corrente c'è anche il nostro `voli`. Lo rendiamo eseguibile lanciando
 
 ```sh
 chmod +x voli
