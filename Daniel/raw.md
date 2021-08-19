@@ -1,6 +1,6 @@
 # Shell Scripting
 
-> Daniel Falbo --- <danielfalbo@engineer.com>
+> Daniel Falbo
 
 ## Introduzione
 
